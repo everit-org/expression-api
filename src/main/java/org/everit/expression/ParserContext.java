@@ -18,9 +18,25 @@ package org.everit.expression;
 
 public class ParserContext {
 
+    private final ClassLoader classLoader;
+
     private int lineCount = 1;
 
     private int lineOffset;
+
+    public ParserContext() {
+        this.classLoader = null;
+    }
+
+    public ParserContext(final ParserContext original) {
+        this.lineCount = original.lineCount;
+        this.lineOffset = original.lineOffset;
+        this.classLoader = original.classLoader;
+    }
+
+    public ClassLoader getClassLoader() {
+        return classLoader;
+    }
 
     /**
      * Get total number of lines declared in the current context.
@@ -41,14 +57,14 @@ public class ParserContext {
     }
 
     /**
-     * Increments the current line count by the specified amount
+     * Increments the current line count by the specified amount.
      *
      * @param increment
      *            The number of lines to increment
      * @return int of lines
      */
     public int incrementLineCount(final int increment) {
-        return this.lineCount += increment;
+        return this.lineCount = this.lineCount + increment;
     }
 
     /**
