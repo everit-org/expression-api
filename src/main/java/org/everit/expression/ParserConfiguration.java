@@ -16,22 +16,26 @@
  */
 package org.everit.expression;
 
-public class ParserContext {
+public class ParserConfiguration {
 
     private final ClassLoader classLoader;
 
-    private int lineCount = 1;
+    private int column = 1;
 
-    private int lineOffset;
+    private int lineNumber = 1;
 
-    public ParserContext() {
+    public ParserConfiguration() {
         this.classLoader = null;
     }
 
-    public ParserContext(final ParserContext original) {
-        this.lineCount = original.lineCount;
-        this.lineOffset = original.lineOffset;
-        this.classLoader = original.classLoader;
+    public ParserConfiguration(final ParserConfiguration original) {
+        if (original == null) {
+            this.classLoader = null;
+        } else {
+            this.lineNumber = original.lineNumber;
+            this.column = original.column;
+            this.classLoader = original.classLoader;
+        }
     }
 
     public ClassLoader getClassLoader() {
@@ -39,32 +43,21 @@ public class ParserContext {
     }
 
     /**
-     * Get total number of lines declared in the current context.
-     *
-     * @return int of lines
-     */
-    public int getLineCount() {
-        return lineCount;
-    }
-
-    /**
      * Get the current line offset. This measures the number of cursor positions back to the beginning of the line.
      *
      * @return int offset
      */
-    public int getLineOffset() {
-        return lineOffset;
+    public int getColumn() {
+        return column;
     }
 
     /**
-     * Increments the current line count by the specified amount.
+     * Get total number of lines declared in the current context.
      *
-     * @param increment
-     *            The number of lines to increment
      * @return int of lines
      */
-    public int incrementLineCount(final int increment) {
-        return this.lineCount = this.lineCount + increment;
+    public int getLineNumber() {
+        return lineNumber;
     }
 
     /**
@@ -73,7 +66,11 @@ public class ParserContext {
      * @param lineOffset
      *            The offset amount
      */
-    public void setLineOffset(final int lineOffset) {
-        this.lineOffset = lineOffset;
+    public void setColumn(final int lineOffset) {
+        this.column = lineOffset;
+    }
+
+    public void setLineNumber(final int lineNumber) {
+        this.lineNumber = lineNumber;
     }
 }

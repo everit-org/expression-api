@@ -43,5 +43,5 @@ public interface ExpressionCompiler {
      *            using this function the original context should be cloned.
      * @return The compiled expression.
      */
-    CompiledExpression compile(String expression, ParserContext parserContext);
+    CompiledExpression compile(String expression, ParserConfiguration parserContext);
 }
