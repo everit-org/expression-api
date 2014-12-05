@@ -24,13 +24,13 @@ public class ParserConfiguration {
 
     private int lineNumber = 1;
 
-    public ParserConfiguration() {
-        this.classLoader = null;
+    public ParserConfiguration(final ClassLoader classLoader) {
+        this.classLoader = classLoader;
     }
 
     public ParserConfiguration(final ParserConfiguration original) {
         if (original == null) {
-            this.classLoader = null;
+            throw new NullPointerException("Parser configuration parameter cannot be null");
         } else {
             this.lineNumber = original.lineNumber;
             this.column = original.column;

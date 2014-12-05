@@ -23,25 +23,18 @@ package org.everit.expression;
 public interface ExpressionCompiler {
 
     /**
-     * Compiles an expression.
-     *
-     * @param expression
-     *            The representation of the expression as a text.
-     * @return The compiled expression.
-     */
-    CompiledExpression compile(String expression);
-
-    /**
      * Compiles an expression within the given parser context.
      *
      * @param expression
      *            The representation of the expression as a text.
-     * @param parserContext
+     * @param parserConfiguration
      *            The current context that the expression is parsed in. This is useful if the expression is presented in
      *            a template and template specific information should be shown in the dropped exceptions (e.g.: line
      *            number and column). The compiler implementation might not support parserContext, therefore before
      *            using this function the original context should be cloned.
      * @return The compiled expression.
+     * @throws NullPointerException
+     *             if expression or parserContext is null.
      */
-    CompiledExpression compile(String expression, ParserConfiguration parserContext);
+    CompiledExpression compile(String expression, ParserConfiguration parserConfiguration);
 }
