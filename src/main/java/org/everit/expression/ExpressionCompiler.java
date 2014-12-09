@@ -36,5 +36,5 @@ public interface ExpressionCompiler {
      * @throws NullPointerException
      *             if expression or parserContext is null.
      */
-    CompiledExpression compile(String expression, ParserConfiguration parserConfiguration);
+    CompiledExpression compile(char[] expression, int start, int offset, ParserConfiguration parserConfiguration);
 }

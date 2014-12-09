@@ -33,7 +33,7 @@ public abstract class AbstractExpressionException extends RuntimeException {
     private static Object repeatChar(final char c, final int offset) {
         char[] result = new char[offset];
         Arrays.fill(result, ' ');
-        return result;
+        return String.valueOf(result);
     }
 
     private int column = 0;
