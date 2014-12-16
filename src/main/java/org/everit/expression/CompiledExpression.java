@@ -24,7 +24,9 @@ import java.util.Map;
 public interface CompiledExpression {
 
     /**
-     * Evaluating an expression.
+     * Evaluating an expression. In case there is an evaluation error, the function should throw a subclass of a
+     * RuntimeException that provides information about the position of the message. To do that, the initial position in
+     * the parserConfiguration should be used, too.
      *
      * @param vars
      *            The variables that can be used in the expression.

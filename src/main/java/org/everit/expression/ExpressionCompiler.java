@@ -23,7 +23,9 @@ package org.everit.expression;
 public interface ExpressionCompiler {
 
     /**
-     * Compiles an expression within the given parser context.
+     * Compiles an expression within the given parser context. In case there is a compilation error, the function should
+     * throw a subclass of a RuntimeException that provides information about the position of the message. To do that,
+     * the initial position in the parserConfiguration should be used, too.
      *
      * @param expression
      *            The representation of the expression as a text.
