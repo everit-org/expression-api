@@ -20,9 +20,9 @@ public class ParserConfiguration {
 
     private final ClassLoader classLoader;
 
-    private int column = 1;
+    private int startColumn = 1;
 
-    private int lineNumber = 1;
+    private int startRow = 1;
 
     public ParserConfiguration(final ClassLoader classLoader) {
         this.classLoader = classLoader;
@@ -32,8 +32,8 @@ public class ParserConfiguration {
         if (original == null) {
             throw new NullPointerException("Parser configuration parameter cannot be null");
         } else {
-            this.lineNumber = original.lineNumber;
-            this.column = original.column;
+            this.startRow = original.startRow;
+            this.startColumn = original.startColumn;
             this.classLoader = original.classLoader;
         }
     }
@@ -47,8 +47,8 @@ public class ParserConfiguration {
      *
      * @return int offset
      */
-    public int getColumn() {
-        return column;
+    public int getStartColumn() {
+        return startColumn;
     }
 
     /**
@@ -56,8 +56,8 @@ public class ParserConfiguration {
      *
      * @return int of lines
      */
-    public int getLineNumber() {
-        return lineNumber;
+    public int getStartRow() {
+        return startRow;
     }
 
     /**
@@ -66,11 +66,11 @@ public class ParserConfiguration {
      * @param lineOffset
      *            The offset amount
      */
-    public void setColumn(final int lineOffset) {
-        this.column = lineOffset;
+    public void setStartColumn(final int lineOffset) {
+        this.startColumn = lineOffset;
     }
 
-    public void setLineNumber(final int lineNumber) {
-        this.lineNumber = lineNumber;
+    public void setStartRow(final int lineNumber) {
+        this.startRow = lineNumber;
     }
 }
