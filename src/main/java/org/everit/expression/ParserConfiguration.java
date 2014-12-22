@@ -16,6 +16,8 @@
  */
 package org.everit.expression;
 
+import java.util.Map;
+
 public class ParserConfiguration {
 
     private final ClassLoader classLoader;
@@ -23,6 +25,8 @@ public class ParserConfiguration {
     private int startColumn = 1;
 
     private int startRow = 1;
+
+    private Map<String, Class<?>> variableTypes = null;
 
     public ParserConfiguration(final ClassLoader classLoader) {
         this.classLoader = classLoader;
@@ -60,6 +64,10 @@ public class ParserConfiguration {
         return startRow;
     }
 
+    public Map<String, Class<?>> getVariableTypes() {
+        return variableTypes;
+    }
+
     /**
      * Sets the current line offset. (Generally only used by the compiler)
      *
@@ -72,5 +80,9 @@ public class ParserConfiguration {
 
     public void setStartRow(final int lineNumber) {
         this.startRow = lineNumber;
+    }
+
+    public void setVariableTypes(final Map<String, Class<?>> variableTypes) {
+        this.variableTypes = variableTypes;
     }
 }
