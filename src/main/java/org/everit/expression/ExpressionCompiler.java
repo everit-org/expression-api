@@ -23,17 +23,39 @@ package org.everit.expression;
 public interface ExpressionCompiler {
 
     /**
-     * Compiles an expression within the given parser context. In case there is a compilation error, the function should
-     * throw a subclass of a RuntimeException that provides information about the position of the message. To do that,
-     * the initial position in the parserConfiguration should be used, too.
+     * Compiles an expression that is embedded in a document. By calling this method, the implementation of the
+     * expression compiler might save memory by re-using the passed character array. The
+     * {@link ParserConfiguration#getStartRow()} and {@link ParserConfiguration#getStartColumn()} values should point to
+     * the place of {@code expressionStart}.
+     *
+     * @param document
+     *            The text that contains the expression.
+     * @param expressionStart
+     *            The position of the expression within the document. In case the expression starts on the first
+     *            character of the document, the value of this parameter should be zero.
+     * @param expressionLength
+     *            The length of the expression.
+     * @param parserConfiguration
+     *            The initial configuration of the parser. The implementation of this interface should not change the
+     *            configuration instance.
+     * @return The compiled expression.
+     * @throws NullPointerException
+     *             if expression or parserContext is null.
+     * @throws IndexOutOfBoundsException
+     *             if the expression is outside of the document based on the expressionStart and expressionLength
+     *             parameters.
+     */
+    CompiledExpression compile(char[] document, int expressionStart, int expressionLength,
+            ParserConfiguration parserConfiguration);
+
+    /**
+     * Compiles an expression.
      *
      * @param expression
      *            The representation of the expression as a text.
      * @param parserConfiguration
-     *            The current context that the expression is parsed in. This is useful if the expression is presented in
-     *            a template and template specific information should be shown in the dropped exceptions (e.g.: line
-     *            number and column). The compiler implementation might not support parserContext, therefore before
-     *            using this function the original context should be cloned.
+     *            The initial configuration of the parser. The implementation of this interface should not change the
+     *            configuration instance.
      * @return The compiled expression.
      * @throws NullPointerException
      *             if expression or parserContext is null.

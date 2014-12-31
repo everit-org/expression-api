@@ -1,4 +1,4 @@
 expression-api
 ==============
 
-API of Expression language compilation and evaluation
+API of Expression language compilation and evaluation.
