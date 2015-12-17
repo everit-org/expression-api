@@ -37,11 +37,11 @@ public class ParserConfiguration {
    * See {@link #getStartColumn()}.
    */
   private int startColumn = 1;
+
   /**
    * See {@link #getStartRow()}.
    */
   private int startRow = 1;
-
   /**
    * See {@link #getVariableTypes()}.
    */
@@ -105,7 +105,7 @@ public class ParserConfiguration {
   }
 
   /**
-   * Gets the column wher the expression starts.
+   * Gets the column where the expression starts.
    *
    * @return the column where the expression starts within it's context (e.g.: if the expression is
    *         embedded into a template). The value of this property is normally used to be able to
@@ -136,6 +136,13 @@ public class ParserConfiguration {
    */
   public Map<String, Class<?>> getVariableTypes() {
     return variableTypes;
+  }
+
+  /**
+   * See {@link #getName()}.
+   */
+  public void setName(final String name) {
+    this.name = name;
   }
 
   /**
